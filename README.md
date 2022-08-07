@@ -1,1 +1,1 @@
-# foxcasts-api
+# Foxcasts API
