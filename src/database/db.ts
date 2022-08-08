@@ -126,12 +126,12 @@ export class Database {
     return this.db<Progress>(Table.Progress)
       .where({ user_id: userId, episode_id: episodeId })
       .first()
-      .then((res) => (res ? res.current_time : 0));
+      .then((res) => (res ? res.time : 0));
   }
 
   async setEpisodeProgress(userId: string, episodeId: number, progress: number): Promise<void> {
     await this.db<Progress>(Table.Progress)
-      .insert({ user_id: userId, episode_id: episodeId, current_time: progress })
+      .insert({ user_id: userId, episode_id: episodeId, time: progress })
       .onConflict(['user_id', 'episode_id'])
       .merge();
   }
