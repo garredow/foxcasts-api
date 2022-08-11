@@ -73,7 +73,7 @@ export class Data {
         return existing;
       }
 
-      const res = await this.podcastIndex.episodeById(id);
+      const res = await this.podcastIndex.episodeById(id, { fulltext: true });
       return this.db.addEpisode(toEpisode(res.episode));
     },
     getEpisodeProgress: (userId: string, episodeId: number): Promise<number> => {
@@ -91,7 +91,10 @@ export class Data {
       let episodes = await this.db.getRecentEpisodes(podcastId, count);
 
       if (episodes.length === 0) {
-        const res = await this.podcastIndex.episodesByFeedId(podcastId, { max: 500 });
+        const res = await this.podcastIndex.episodesByFeedId(podcastId, {
+          max: 500,
+          fulltext: true,
+        });
         await this.db.addEpisodes(res.items.map((a) => toEpisode(a)));
         episodes = await this.db.getRecentEpisodes(podcastId, count);
       }

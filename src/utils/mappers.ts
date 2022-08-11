@@ -1,4 +1,5 @@
 import { PIApiEpisodeInfo, PIApiFeed, PIApiPodcast } from 'podcastdx-client/dist/src/types';
+import sanitizeHtml from 'sanitize-html';
 import { Category, Episode, Podcast, SearchResult } from '../models';
 
 export function toSearchResult(source: PIApiFeed): SearchResult {
@@ -35,7 +36,7 @@ export function toEpisode(source: PIApiEpisodeInfo): Episode {
     podcast_id: source.feedId,
     date: new Date(source.datePublished * 1000).toISOString(),
     title: source.title,
-    description: source.description,
+    description: sanitizeHtml(source.description),
     duration: source.duration,
     file_size: source.enclosureLength,
     file_type: source.enclosureType,
