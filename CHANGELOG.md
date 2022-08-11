@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/garredow/foxcasts-api/compare/v2.0.1...v2.1.0) (2022-08-11)
+
+
+### Features
+
+* get full episode description ([745a017](https://github.com/garredow/foxcasts-api/commit/745a0178ffd97625476b499d9ac957d936278d7b))
+
 ## [2.0.1](https://github.com/garredow/foxcasts-api/compare/v2.0.0...v2.0.1) (2022-08-08)
 
 
